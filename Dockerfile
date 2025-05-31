@@ -11,15 +11,21 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender-dev \
     libgomp1 \
-    libglib2.0-0 \
     libgtk-3-0 \
+    libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
+
+# Set environment variable to force CPU-only PyTorch
+ENV TORCH_DEVICE=cpu
 
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install PyTorch CPU version first
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Install other dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the model file

@@ -1,9 +1,5 @@
-# Core dependencies - CPU only versions to save space
-torch==2.1.0+cpu --index-url https://download.pytorch.org/whl/cpu
-torchvision==0.16.0+cpu --index-url https://download.pytorch.org/whl/cpu
-
-# YOLO - use minimal version
-ultralytics==8.0.196
+# YOLO - this will automatically install compatible PyTorch CPU version
+ultralytics
 
 # Flask
 Flask==2.3.3
@@ -11,7 +7,6 @@ Flask==2.3.3
 # Image processing
 Pillow==10.0.1
 
-# Essential dependencies for YOLO/OpenCV (minimal)
+# Essential dependencies
 opencv-python-headless==4.8.1.78
 numpy==1.24.3
-matplotlib==3.7.2
